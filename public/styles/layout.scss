@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family) !important;
+  font-size: 15px !important;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+:root,
+[data-theme="dark"] {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Background Color Classes */
+.bg-main-color {
+  background-color: var(--main-color);
+}
+
+.bg-secondary-color {
+  background-color: var(--secondary-color);
+}
+
+.bg-tertiary-color {
+  background-color: var(--tertiary-color);
+}
+
+.bg-default-color {
+  background-color: var(--default-color);
+}
+
+.bg-gray-color {
+  background-color: var(--gray-color);
+}
+
+/* Text Color Classes */
+.text-main-color {
+  color: var(--main-color);
+}
+
+.text-secondary-color {
+  color: var(--secondary-color);
+}
+
+.text-tertiary-color {
+  color: var(--tertiary-color);
+}
+
+.text-default-color {
+  color: var(--default-color);
+}
+
+.text-gray-color {
+  color: var(--gray-color);
+}
+
+::selection {
+  background-color: var(--tertiary-color);
+  color: var(--main-color);
+}
+
+.mat-mdc-select-panel,
+.mat-mdc-paginator {
+  background-color: var(--secondary-color) !important;
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content,
+.mat-mdc-option {
+  color: var(--default-color) !important;
+}
+
+.mat-button-toggle-appearance-standard.mat-button-toggle-checked .mat-button-toggle-label-content {
+  color: var(--tertiary-color) !important;
+}
+
+.mat-mdc-paginator-container {
+  flex-wrap: nowrap !important;
+}
+
+.mat-mdc-paginator-range-label,
+.mat-mdc-select-value-text,
+.mat-mdc-paginator-page-size-label {
+  color: var(--default-color) !important;
+}
+
+.mat-mdc-icon-button[disabled] .mat-mdc-paginator-icon {
+  fill: #363737 !important;
+}

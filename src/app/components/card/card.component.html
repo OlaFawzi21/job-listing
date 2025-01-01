@@ -1,0 +1,41 @@
+<div class="card-box rounded-3 p-4 bg-secondary-color position-relative">
+  <div class="card-body d-flex align-items-center gap-4 position-relative">
+    <img src="images/the-air.svg" class="img-box" alt="company-logo" />
+    <div class="content flex-grow-1">
+      <div class="d-flex align-items-center mb-3 mt-md-0 mt-4">
+        <p class="text-tertiary-color fw-bold mb-0 me-4">
+          {{ job.company_name }}
+        </p>
+        <ng-container *ngFor="let type of job.job_types">
+          <small
+            class="bg-tertiary-color text-secondary-color p-2 rounded-5 me-2"
+            >{{ type }}</small
+          >
+        </ng-container>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-4">
+          <h6 class="text-default-color fw-bold mb-3">
+            {{ job.title }}
+          </h6>
+          <div class="text-gray-color d-flex align-items-center gap-3">
+            <small>{{ job.created_at * 1000 | timeago }}</small>
+            <div class="small-circle"></div>
+            <small>{{ job.location }}</small>
+          </div>
+        </div>
+        <hr />
+        <div
+          class="tags col-md-8 d-flex justify-content-start justify-content-md-end"
+        >
+          <ng-container *ngFor="let tag of job.tags">
+            <small
+              class="bg-main-color text-tertiary-color p-2 rounded-2 fw-bold me-2"
+              >{{ tag }}</small
+            >
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

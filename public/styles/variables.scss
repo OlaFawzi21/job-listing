@@ -1,0 +1,18 @@
+:root {
+  --main-color: #f0fafb;
+  --secondary-color: #fff;
+  --tertiary-color: #5fa9a7;
+  --default-color: #2a3535;
+  --gray-color: #848b89;
+  --box-shadow: rgba(121, 202, 201, 0.327) 0px 25px 20px -20px;
+  --font-family: "Kumbh Sans", serif;
+}
+
+.dark-theme {
+  --main-color: #1a2525;
+  --secondary-color: #151e1e;
+  --tertiary-color: #8fdedc;
+  --default-color: #e0f2f2;
+  --gray-color: #768786;
+  --box-shadow: rgba(121, 202, 201, 0.327) 0px 25px 20px -25px;
+}

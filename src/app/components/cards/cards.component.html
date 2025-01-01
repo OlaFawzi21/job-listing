@@ -1,0 +1,38 @@
+<section>
+  <div class="row justify-content-center gap-4">
+    <div class="col-md-10">
+      <mat-button-toggle-group
+        [(ngModel)]="remoteControl"
+        (change)="filterRemoteJobs()"
+      >
+        <mat-button-toggle value="false">All Jobs</mat-button-toggle>
+        <mat-button-toggle value="true">Remote Jobs</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <div class="my-5" *ngFor="let job of jobs">
+        <app-card [job]="job"></app-card>
+      </div>
+
+      <mat-paginator
+        [length]="totalItems"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 20, 50, 100]"
+        (page)="handlePageEvent($event)"
+      >
+      </mat-paginator>
+
+      <div class="d-flex justify-content-center align-items-center gap-3 mt-5">
+        <button
+          [disabled]="currentPage === 1"
+          (click)="previousPage()"
+          class="button"
+        >
+          previous page
+        </button>
+        <button [disabled]="!jobs.length" (click)="nextPage()" class="button">
+          next page
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
