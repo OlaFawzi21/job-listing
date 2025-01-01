@@ -20,7 +20,7 @@ export class CardsComponent {
 
   filteredJobs: any;
 
-  remoteControl = '';
+  remoteControl = 'false';
 
   constructor(private jobsService: JobsService) {}
 
@@ -39,7 +39,8 @@ export class CardsComponent {
   updatePageData() {
     const startIndex = this.pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    this.jobs = this.allJobs.slice(startIndex, endIndex);
+    this.jobs = this.allJobs.slice( startIndex, endIndex );
+    this.filterRemoteJobs();
   }
 
   handlePageEvent(event: PageEvent) {

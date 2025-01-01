@@ -2,6 +2,7 @@
   <div class="row justify-content-center gap-4">
     <div class="col-md-10">
       <mat-button-toggle-group
+        *ngIf="jobs.length"
         [(ngModel)]="remoteControl"
         (change)="filterRemoteJobs()"
       >
@@ -14,6 +15,7 @@
       </div>
 
       <mat-paginator
+        *ngIf="jobs.length"
         [length]="totalItems"
         [pageSize]="pageSize"
         [pageSizeOptions]="[5, 10, 20, 50, 100]"
@@ -21,6 +23,15 @@
       >
       </mat-paginator>
 
+      <div class="mx-auto text-center">
+        <img
+        src="images/no-data.svg"
+        alt="no-data"
+        *ngIf="!jobs.length"
+        class="w-75"
+      />
+      </div>
+      
       <div class="d-flex justify-content-center align-items-center gap-3 mt-5">
         <button
           [disabled]="currentPage === 1"
