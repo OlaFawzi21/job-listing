@@ -14,25 +14,19 @@
         <app-card [job]="job"></app-card>
       </div>
 
-      <mat-paginator
-        *ngIf="jobs.length"
-        [length]="totalItems"
-        [pageSize]="pageSize"
-        [pageSizeOptions]="[5, 10, 20, 50, 100]"
-        (page)="handlePageEvent($event)"
-      >
-      </mat-paginator>
-
       <div class="mx-auto text-center">
         <img
-        src="images/no-data.svg"
-        alt="no-data"
-        *ngIf="!jobs.length"
-        class="w-75"
-      />
+          src="images/no-data.svg"
+          alt="no-data"
+          *ngIf="!jobs.length"
+          class="w-50"
+        />
       </div>
-      
-      <div class="d-flex justify-content-center align-items-center gap-3 mt-5">
+
+      <div
+        class="d-flex justify-content-center align-items-center gap-3 mt-5"
+        *ngIf="data"
+      >
         <button
           [disabled]="currentPage === 1"
           (click)="previousPage()"
@@ -40,7 +34,11 @@
         >
           previous page
         </button>
-        <button [disabled]="!jobs.length" (click)="nextPage()" class="button">
+        <button
+          [disabled]="!data.links.next"
+          (click)="nextPage()"
+          class="button"
+        >
           next page
         </button>
       </div>
