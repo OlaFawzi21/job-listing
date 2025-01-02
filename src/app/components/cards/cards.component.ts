@@ -10,15 +10,14 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class CardsComponent {
   allJobs: Job[] = [];
-
+  filteredJobs: Job[] = [];
   jobs: Job[] = [];
+
   totalItems = 0;
   pageSize = 10;
   pageIndex = 0;
 
   currentPage = 1;
-
-  filteredJobs: any;
 
   remoteControl = 'false';
 
@@ -31,7 +30,8 @@ export class CardsComponent {
   fetchJobs() {
     this.jobsService.getJobs(this.currentPage).subscribe((res) => {
       this.allJobs = res.data || [];
-      this.totalItems = this.allJobs.length;
+      this.filteredJobs = [...this.allJobs];
+      this.totalItems = this.filteredJobs.length;
       this.updatePageData();
     });
   }
@@ -39,13 +39,23 @@ export class CardsComponent {
   updatePageData() {
     const startIndex = this.pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    this.jobs = this.allJobs.slice( startIndex, endIndex );
-    this.filterRemoteJobs();
+    this.jobs = this.filteredJobs.slice(startIndex, endIndex);
   }
 
   handlePageEvent(event: PageEvent) {
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
+    this.updatePageData();
+  }
+
+  filterRemoteJobs() {
+    if (this.remoteControl === 'true') {
+      this.filteredJobs = this.allJobs.filter((job) => job.remote);
+    } else {
+      this.filteredJobs = [...this.allJobs];
+    }
+    this.pageIndex = 0;
+    this.totalItems = this.filteredJobs.length;
     this.updatePageData();
   }
 
@@ -57,17 +67,5 @@ export class CardsComponent {
   nextPage() {
     this.currentPage = this.currentPage + 1;
     this.fetchJobs();
-  }
-
-  filterRemoteJobs() {
-    if (this.remoteControl == 'true') {
-      this.allJobs = this.allJobs.filter((job) => job.remote);
-      this.pageIndex = 0;
-      this.totalItems = this.allJobs.length;
-      this.updatePageData();
-    } else {
-      this.fetchJobs();
-      return;
-    }
   }
 }

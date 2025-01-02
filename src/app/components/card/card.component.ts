@@ -10,4 +10,7 @@ import { TimeagoPipe } from 'ngx-timeago';
 })
 export class CardComponent {
   @Input() job: Job;
+  navigateUrl() {
+    window.location.href = this.job.url;
+  }
 }
