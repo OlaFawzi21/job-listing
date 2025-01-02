@@ -13,6 +13,7 @@ export class CardsComponent {
   data: JobResponse;
   currentPage = 1;
   remoteControl = 'false';
+  searchControl = '';
 
   constructor(private jobsService: JobsService) {}
 
@@ -29,11 +30,23 @@ export class CardsComponent {
   }
 
   filterRemoteJobs() {
+    let filteredJobs = [...this.allJobs];
+
+    // Filter by remote jobs if remoteControl is 'true'
     if (this.remoteControl === 'true') {
-      this.jobs = this.allJobs.filter((job) => job.remote);
-    } else {
-      this.jobs = [...this.allJobs];
+      filteredJobs = filteredJobs.filter((job) => job.remote);
     }
+
+    // Filter by search term if searchControl is not empty
+    if (this.searchControl.trim()) {
+      const searchTerm = this.searchControl.trim().toLowerCase();
+      filteredJobs = filteredJobs.filter((job) =>
+        job.title.toLowerCase().includes(searchTerm)
+      );
+    }
+
+    // Assign the filtered jobs to this.jobs
+    this.jobs = filteredJobs;
   }
 
   previousPage() {
@@ -48,5 +61,9 @@ export class CardsComponent {
       this.currentPage++;
       this.fetchJobs();
     }
+  }
+
+  reset() {
+    this.searchControl = '';
   }
 }

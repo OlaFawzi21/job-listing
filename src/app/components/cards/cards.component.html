@@ -9,6 +9,22 @@
         <mat-button-toggle value="false">All Jobs</mat-button-toggle>
         <mat-button-toggle value="true">Remote Jobs</mat-button-toggle>
       </mat-button-toggle-group>
+      <div class="row mt-4">
+        <mat-form-field class="example-full-width col-12 col-md-8">
+          <mat-label>Search by job title</mat-label>
+          <input matInput (input)="filterRemoteJobs()" [(ngModel)]="searchControl" />
+        </mat-form-field>
+        <a
+          class="d-flex align-items-center col-1 cursor"
+          (click)="reset()"
+          *ngIf="searchControl !== ''"
+        >
+          <mat-icon matSuffix class="text-tertiary-color"
+            >restart_alt</mat-icon
+          >
+          <span class="text-tertiary-color">Reset</span>
+        </a>
+      </div>
 
       <div class="my-5" *ngFor="let job of jobs">
         <app-card [job]="job"></app-card>
@@ -25,7 +41,7 @@
 
       <div
         class="d-flex justify-content-center align-items-center gap-3 mt-5"
-        *ngIf="data"
+        *ngIf="data?.data?.length"
       >
         <button
           [disabled]="currentPage === 1"

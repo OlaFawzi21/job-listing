@@ -12,7 +12,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { CardComponent } from './components/card/card.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TimeagoModule.forRoot(),
     MatPaginatorModule,
     MatButtonToggleModule,
+    MatInputModule,
+    MatIconModule,
     FormsModule,
   ],
   providers: [provideHttpClient(withFetch()), provideAnimationsAsync()],
